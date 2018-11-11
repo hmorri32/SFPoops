@@ -1,2 +1,2 @@
 # sf poops
-Inspiration from [wasteland](http://mochimachine.org/wasteland/)
+Inspired by [wasteland](http://mochimachine.org/wasteland/)
