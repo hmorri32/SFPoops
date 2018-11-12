@@ -155,18 +155,22 @@ async function fetchPooAndRenderMarkers() {
     }
   });
 
-  map.addLayer({
-    id: 'unclustered-point',
-    type: 'circle',
-    source: 'poops',
-    filter: ['!', ['has', 'point_count']],
-    paint: {
-      'circle-color': '#11b4da',
-      'circle-radius': 4,
-      'circle-stroke-width': 1,
-      'circle-stroke-color': '#fff'
+  map.loadImage(
+    'https://cdn.shopify.com/s/files/1/1061/1924/files/Poop_Emoji.png?9898922749706957214',
+    function(err, image) {
+      map.addImage('poo', image);
+      map.addLayer({
+        id: 'unclustered-point',
+        type: 'symbol',
+        source: 'poops',
+        filter: ['!', ['has', 'point_count']],
+        layout: {
+          'icon-image': 'poo',
+          'icon-size': 0.05
+        }
+      });
     }
-  });
+  );
 
   map.on('click', 'clusters', function(e) {
     var features = map.queryRenderedFeatures(e.point, { layers: ['clusters'] });
